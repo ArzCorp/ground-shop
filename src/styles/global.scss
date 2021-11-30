@@ -1,7 +1,15 @@
 $primary-color: #222222;
-$seconday-color: #f2f2f2;
+$ligth-color: #f2f2f2;
+$seconday-color: #000068;
 $pass-color: #00b400;
 $error-color: #df1b01;
+$button-radius: 15px;
+$hover-opacity: 0.8;
+
+@mixin button-transition {
+	cursor: pointer;
+	transition: all 0.7s;
+}
 
 * {
 	margin: 0px;
@@ -11,7 +19,7 @@ $error-color: #df1b01;
 }
 
 body {
-	background-color: $seconday-color;
+	background-color: $ligth-color;
 	color: $primary-color;
 }
 
@@ -28,7 +36,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: $seconday-color;
+	background-color: $ligth-color;
 	padding: 30px 0px;
 	border-bottom: 1px solid $primary-color;
 	&-logo {
@@ -36,11 +44,54 @@ body {
 		font-weight: bold;
 	}
 	&-car {
-		color: #f2f2f2;
+		color: $ligth-color;
 		padding: 10px 10px;
 		border: none;
 		font-weight: bold;
-		border-radius: 15px;
+		border-radius: $button-radius;
 		background-color: $pass-color;
+		@include button-transition();
+		&:hover {
+			opacity: $hover-opacity;
+		}
+	}
+}
+
+.product-card {
+	border: 1px solid $primary-color;
+	background-color: $ligth-color;
+	width: 100%;
+	max-width: 320px;
+	&__img-container {
+		width: 100%;
+		&--img {
+			width: 100%;
+			object-fit: fill;
+		}
+	}
+
+	&__description {
+		background-color: $ligth-color;
+		padding: 20px 30px;
+		&--name {
+			font-size: 22px;
+			font-weight: bold;
+		}
+		&--price {
+			font-size: 18px;
+			margin: 10px 0px;
+		}
+		&--button {
+			padding: 10px 20px;
+			border: none;
+			border-radius: $button-radius;
+			background-color: $seconday-color;
+			color: $ligth-color;
+			font-weight: bold;
+			@include button-transition();
+			&:hover {
+				opacity: $hover-opacity;
+			}
+		}
 	}
 }
