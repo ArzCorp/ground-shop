@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 export default class ProductCard extends Component {
 	render() {
+		const { addProduct } = this.props
 		const { name, price, img } = this.props.item
 		return (
 			<div className="product-card">
@@ -15,7 +16,10 @@ export default class ProductCard extends Component {
 				<div className="product-card__description">
 					<h3 className="product-card__description--name">{name}</h3>
 					<p className="product-card__description--price">{`$${price}`}</p>
-					<button className="product-card__description--button">
+					<button
+						className="product-card__description--button"
+						onClick={addProduct}
+					>
 						Agregar <i className="fas fa-shopping-cart"></i>
 					</button>
 				</div>

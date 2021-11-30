@@ -39,11 +39,12 @@ body {
 	background-color: $ligth-color;
 	padding: 30px 0px;
 	border-bottom: 1px solid $primary-color;
-	&-logo {
+	&__logo {
 		font-size: 25px;
 		font-weight: bold;
 	}
-	&-car {
+	&__cart {
+		position: relative;
 		color: $ligth-color;
 		padding: 10px 10px;
 		border: none;
@@ -53,6 +54,14 @@ body {
 		@include button-transition();
 		&:hover {
 			opacity: $hover-opacity;
+		}
+		&--products {
+			position: absolute;
+			left: -10%;
+			top: 20px;
+			border-radius: 100%;
+			background-color: $error-color;
+			padding: 5px;
 		}
 	}
 }

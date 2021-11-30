@@ -3,13 +3,25 @@ import Header from '../components/Header'
 import ProductCard from '../components/ProductCard'
 
 export default class Home extends Component {
+	state = {
+		productsInCart: 0,
+	}
+	constructor() {
+		super()
+	}
 	render() {
+		const { productsInCart } = this.state
 		return (
 			<div>
-				<Header />
+				<Header productsInCart={productsInCart} />
 				<div className="container">
 					<h1 className="home__title">Tienda</h1>
 					<ProductCard
+						addProduct={() =>
+							this.setState({
+								productsInCart: (this.state.productsInCart += 1),
+							})
+						}
 						item={{
 							name: 'tomate',
 							price: '1500',
