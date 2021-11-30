@@ -7,13 +7,16 @@ export default class Home extends Component {
 		return (
 			<div>
 				<Header />
-				<ProductCard
-					item={{
-						name: 'tomate',
-						price: '1500',
-						img: 'https://i.ibb.co/122VT2W/tomate.jpg',
-					}}
-				/>
+				<div className="container">
+					<h1 className="home__title">Tienda</h1>
+					<ProductCard
+						item={{
+							name: 'tomate',
+							price: '1500',
+							img: 'https://i.ibb.co/122VT2W/tomate.jpg',
+						}}
+					/>
+				</div>
 			</div>
 		)
 	}
