@@ -120,3 +120,41 @@ body {
 		}
 	}
 }
+
+.shopping-card {
+	width: 100%;
+	max-width: 320px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: white;
+	padding: 10px;
+	padding-right: 30px;
+	font-size: 15px;
+	&__container-img {
+		width: 100%;
+		max-width: 30%;
+		&--img {
+			width: 100%;
+			object-fit: fill;
+		}
+	}
+	&__name {
+		font-weight: bold;
+	}
+}
+
+.shopping-cart {
+	position: relative;
+	&__list {
+		width: 320px;
+		position: absolute;
+		top: calc(100% + 10px);
+		box-shadow: 5px 8px 20px -5px $primary-color;
+		&--message {
+			text-align: center;
+			padding: 20px 0px;
+			background-color: $ligth-color;
+		}
+	}
+}
