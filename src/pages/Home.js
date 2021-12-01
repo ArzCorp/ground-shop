@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Header from '../components/Header'
 import ProductCard from '../components/ProductCard'
+import Products from '../data/Products'
 
 export default class Home extends Component {
 	state = {
@@ -16,18 +17,18 @@ export default class Home extends Component {
 				<Header productsInCart={productsInCart} />
 				<div className="container">
 					<h1 className="home__title">Tienda</h1>
-					<ProductCard
-						addProduct={() =>
-							this.setState({
-								productsInCart: (this.state.productsInCart += 1),
-							})
-						}
-						item={{
-							name: 'tomate',
-							price: '1500',
-							img: 'https://i.ibb.co/122VT2W/tomate.jpg',
-						}}
-					/>
+					<div className="home__cards-container">
+						{Products.map((product) => (
+							<ProductCard
+								addProduct={() =>
+									this.setState({
+										productsInCart: (this.state.productsInCart += 1),
+									})
+								}
+								item={product}
+							/>
+						))}
+					</div>
 				</div>
 			</div>
 		)
