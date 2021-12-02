@@ -1,62 +1,55 @@
 import React, { Component } from 'react'
 import Header from '../components/Header'
-import ProductCard from '../components/ProductCard'
+import Product from '../components/Product'
 import Products from '../data/Products'
 
 export default class Home extends Component {
 	state = {
-		productsInCart: 0,
-		productsListInCart: [],
+		cart: [],
 	}
 	constructor() {
 		super()
 	}
 
-	cartHasProduct(product) {
-		const { productsListInCart } = this.state
+	cartHasProduct = (product) => {
+		const { cart } = this.state
 
-		return (
-			productsListInCart.filter((item) => product.name === item.name).length <=
-			0
-		)
+		return cart.find((item) => product.name === item.name)
 	}
 
-	addedInCart(product) {
-		const { productsListInCart } = this.state
+	addToCart = (product) => {
+		const { cart } = this.state
 
-		if (this.cartHasProduct(product)) {
-			return [...productsListInCart, { ...product, mount: 1 }]
+		if (!this.cartHasProduct(product)) {
+			return this.setState({
+				cart: [...cart, { ...product, mount: 1 }],
+			})
 		} else {
-			return productsListInCart.map((item) => {
+			const newCart = cart.map((item) => {
 				if (item.name === product.name) {
 					item.mount += 1
 				}
 				return item
 			})
+			return this.setState({
+				cart: newCart,
+			})
 		}
 	}
 
 	render() {
-		const { productsInCart, productsListInCart } = this.state
+		const { cart } = this.state
 		return (
 			<div>
-				<Header
-					productsInCart={productsInCart}
-					shoppingProductsList={productsListInCart}
-				/>
+				<Header productsInCart={cart} shoppingProductsList={cart} />
 				<div className="container">
 					<h1 className="home__title">Tienda</h1>
 					<div className="home__cards-container">
 						{Products.map((product) => (
-							<ProductCard
-								key={product.id}
-								addProduct={() =>
-									this.setState({
-										productsInCart: (this.state.productsInCart += 1),
-										productsListInCart: this.addedInCart(product),
-									})
-								}
+							<Product
 								item={product}
+								key={product.id}
+								addProduct={() => this.addToCart(product)}
 							/>
 						))}
 					</div>

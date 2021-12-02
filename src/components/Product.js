@@ -9,7 +9,7 @@ export default class ProductCard extends Component {
 				<figure className="product-card__img-container">
 					<img
 						src={img}
-						alt={`producto ${name}`}
+						alt={name}
 						className="product-card__img-container--img"
 					/>
 				</figure>

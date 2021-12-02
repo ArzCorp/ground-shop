@@ -3,15 +3,19 @@ import CartItem from './CartItem'
 
 export default class ShoppingCart extends Component {
 	state = {
-		listOpen: false,
+		cartOpen: false,
 	}
 	constructor() {
 		super()
 	}
 
 	render() {
-		const { listOpen } = this.state
-		const { productsInCart, shoppingProductsList } = this.props
+		const { cartOpen } = this.state
+		const { shoppingProductsList } = this.props
+		const quantity = shoppingProductsList.reduce(
+			(acc, product) => acc + product.mount,
+			0
+		)
 
 		return (
 			<div className="shopping-cart">
@@ -19,18 +23,18 @@ export default class ShoppingCart extends Component {
 					className="header__cart"
 					onClick={() =>
 						this.setState({
-							listOpen: !listOpen,
+							cartOpen: !cartOpen,
 						})
 					}
 				>
 					Carrito
-					{productsInCart === 0 ? null : (
+					{quantity === 0 ? null : (
 						<p className="header__cart--products">
-							{productsInCart > 9 ? '9+' : productsInCart}
+							{quantity > 9 ? '9+' : quantity}
 						</p>
 					)}
 				</button>
-				{listOpen ? (
+				{cartOpen ? (
 					<div className="shopping-cart__list">
 						{shoppingProductsList.length > 0 ? (
 							shoppingProductsList.map((product) => (
